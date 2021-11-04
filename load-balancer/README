@@ -1,0 +1,44 @@
+README TEMA 2 SD 2021 - STANCIU ALEX GR313CA
+
+server.c:
+	-am folosit functiile de la laborator din implementarea mea
+	pentru Hashtable.c
+	-am schimbat numele structurii hashtable_t din implementare
+	in structura server_memory necesara pentru a folosi functiile
+
+load_balancer.c:
+	-init_load_balancer:
+		-hashring-ul implementat cu un array circular alocat dinamic
+		-un array de structuri care retine serverele (hashtable-urile)
+		si id-ul fiecarui server
+		-un contor care ne arata numarul server-elor stocate
+	-loader_store:
+		-face hash-ul cheii date ca parametru si verifica pe hashring
+		pe ce server trebuie stocata
+		-gaseste server-ul in array si stocheaza perechea cheie-valoare
+	-loader_retrieve:
+		-face hash-ul cheii date ca parametru si verifica pe hashring
+		pe ce server este stocata
+		-gaseste server-ul in array si returneaza valoarea asociata
+		cu cheia
+	-loader_add_server:
+		-daca e primul server adaugat, adauga replicile pe hashring,
+		altfel gaseste unde trebuie sa fie pusa fiecare replica
+		facand hash-ul replicii de fiecare data si comparand-o
+		-dupa fiecare pozitionarea a unei replici se apeleaza
+		functia balance
+	-balance:
+		-functia are rolul de a face redistribuirea obiectelor in
+		functie de mai multe cazuri
+		-cazul cand vrem sa mutam un obiect de pe server-ul unei replici
+		pe acelasi server al altei replici de al acestuia
+		-cazurile cand server-ul adaugat este pe prima respectiv
+		ultima pozitie
+		-cazul clasic care nu este niciunul din cele de mai sus
+	-loader_remove_server:
+		-sterge replicile server-ului de pe hashring
+		-gaseste pozitiile server-elor unde trebuie 
+		redistribuite obiectele si le stocheaza acolo
+		-sterge server-ul (hashtable-ul) din array-ul de servere
+	-free_load_balancer:
+		-elibereaza toata memoria

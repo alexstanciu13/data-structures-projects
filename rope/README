@@ -1,0 +1,46 @@
+//TEMA 3 SD 2021 README
+//Craciun Mara && Stanciu Alex
+
+Concat:
+- primeste doua rope-uri
+- creeaza un nou nod care va fi root-ul noului rope pe care-l
+si initializeaza
+- root-ul nou va avea copiii stanga si dreapta root-urile celor
+doua rope-uri primite ca parametrii
+
+IndexRope:
+- compara indexul cu weight-ul nodului la care se afla
+- se plimba prin rope pana ajunge la frunza in care se
+afla caracterul de indice index si il returneaza
+
+Search:
+- creeaza un string nou
+- apeleaza IndexRope pe fiecare index care se afla in intervalul
+primit
+- returneaza stringul creat
+
+Split:
+- lucram cu copia rope-ului pentru a nu afecta rope-ul initial
+- verificam cazurile particulare (nicio taiere sau o taiere la
+dreapta lui root)
+- am creat o functie break_leaf care, in cazul in care rope-ul
+trebuie taiat in mijlocul unei frunze, imparte acea frunza in 
+doua la indexul respectiv
+- parcurgem rope-ul si stocam intr-un vector de pointeri nodurile
+ce trebuie concatenate
+- la final,concatenam toate nodurile din vector si folosim functia
+creata de repare care va actualiza weight-urile celor doua rope-uri
+- returnam pereche SplitPair
+
+Insert:
+- apelam functia de Split la valoarea indexului primit
+- concatenam rope-ul din stanga cu noul nod creat
+- concatenam rope-ul obtinut mai sus cu cel din dreapta
+obtinut dupa operatia de split si il returnam
+
+Delete:
+- apelam functia de Split la valoarea indexului start
+- apelam pe rope-ul din dreapta operatia de Split la valoarea lui len
+- in final, concatenam rope-ul din stanga de la prima operatie de Split
+cu rope-ul din dreapta de la a doua operatie de Split si returnam rezultatul
+

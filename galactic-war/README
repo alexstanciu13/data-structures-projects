@@ -1,0 +1,43 @@
+Fisier README TEMA1 - Structuri de Date 2021 - Stanciu Alex, grupa 313CA
+
+- am folosit implementarea facuta de mine la laborator pentru liste circulare dublu inlantuite
+- am folosit functiile din aceasta implementare in mod convenabil pentru nevoile rezolvarii
+- comenzi:
+	- ADD:	- folosirea unei structuri pentru stocarea datelor necesare despre o planeta
+			- crearea listei de scuturi si adaugarea scuturilor
+			- la sfarsit se da free la structura alocata in functie pentru ca oricum ii facem
+			deep copy si nu mai avem nevoie de ea
+
+	- SHW:	- se afiseaza datele cerute despre planeta de la indicele index
+			- cu ajutorul functiei dll_print_int_list se printeaza lista de scuturi
+
+	- UPG:	- se gaseste nodul corespunzator planetei si apoi nodul corespunzator scutului
+			- se adauga valoarea val ceruta la valoarea scutului gasit
+
+	- EXP:	- se gaseste indexul de la sfarsitul listei unde trebuie sa adaugam scutul nou
+
+	- RMV:	- se gaseste nodul corespunzator planetei si apoi nodul corespunzator scutului
+			care trebuie sters
+			- se sterge folosind functia implementata la laborator de stergerea unui nod
+
+	- ROT:	- se gaseste nodul corespunzator planetei
+			- lista de scuturi isi schimba head-ul la dreapta sau la stanga (->prev sau ->next)
+			de unitati cerute modulo size-ul listei de scuturi a planetei respective
+
+	- BLH:	- se sterge nodul corespunzator planetei de la indicele index si se da free la memorie
+			- functia implementata nu face scrierea la stdout a mesajului "The planet ... has been eaten
+			by the vortex" deoarece am mai folosit aceasta functie si la comanda de COL in cazul in care
+			o planeta facea implozie si voiam sa o stergem, si la functia de freelist pentru a sterge toate
+			planetele din lista
+			- din aceasta cauza am facut scrierea la stdout a mesajului in main pentru a ma bucura de
+			folosirea in mod convenabil a functiei blh
+
+	- COL:	- se gasesc nodurile corespunzatoare celor 2 planete
+			- se gasesc indicii scuturilor care isi vor pierde o unitate
+			- ne folosim de functia upgrade implementata pentru a face de fapt "downgrade" cu o unitate
+			celor 2 scuturi (adica se apeleaza functia upgrade cu valoarea -1)
+			- de asemenea, din aceasta cauza in functia upgrade, val nu e de tip unsigned int, ci int
+			tocmai pentru a ma folosi in mod convenabil de ea si aici
+			- in cazul in care scutul oricarei planete ajunge negativ planeta se sterge folosing functia blh
+
+- in final se apeleaza functia de freelist care sterge toate planetele folosind functia blh si se de free la list
